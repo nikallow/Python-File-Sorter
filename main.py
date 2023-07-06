@@ -42,18 +42,18 @@ class App(ctk.CTk):
                                          width=175, height=40)
         self.sort_button.grid(row=1, column=1, padx=(5, 0), pady=0)
         self.sort_button.configure( text="Sort files",
-                                      font=my_font)# , command=self.sort_files)
+                                      font=my_font , command=self.sort_files)
         
 
         # Info frame
         self.info_frame = ctk.CTkFrame(master=self, fg_color="transparent")
         self.info_frame.grid(row=2, column=0, padx=20, pady=(0, 50))
 
-        # info label
+        # Info label
         self.info_label = ctk.CTkLabel(master=self.info_frame,
-                                       width=200, height=30,
-                                       text="Test message", font=my_font)
-        self.info_label.grid(row=0, column=0, padx=80, pady=0)        
+                                       width=360, height=30,
+                                       text=" ", font=my_font)
+        self.info_label.grid(row=0, column=0, padx=0, pady=0)        
 
 
         # Additional buttons frame
@@ -79,8 +79,7 @@ class App(ctk.CTk):
         if folder_path:
             self.folder_entry.delete(0, "end")
             self.folder_entry.insert(0, folder_path)
-
-
+        self.info_label.configure(text=" ")
 
     def github_link(self):
         link = "https://github.com/nikallow/Python-File-Sorter"
@@ -88,6 +87,60 @@ class App(ctk.CTk):
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         ctk.set_appearance_mode(new_appearance_mode)
+
+    def sort_files(self):
+        self.info_label.configure(text=" ")
+        folder_location = app.folder_entry.get()
+
+        if folder_location == "":
+            self.info_label.configure(text="Please select a folder.")
+            return
+
+        if not os.path.exists(folder_location):
+            self.info_label.configure(text="The specified folder does not exist.")
+            return
+
+        sorted_folder = os.path.join(folder_location, "Sorted")
+        os.makedirs(sorted_folder, exist_ok=True)
+
+        images_folder = os.path.join(sorted_folder, "Images")
+        os.makedirs(images_folder, exist_ok=True)
+
+        documents_folder = os.path.join(sorted_folder, "Documents")
+        os.makedirs(documents_folder, exist_ok=True)
+
+        archives_folder = os.path.join(sorted_folder, "Archives")
+        os.makedirs(archives_folder, exist_ok=True)
+
+        videos_folder = os.path.join(sorted_folder, "Videos")
+        os.makedirs(videos_folder, exist_ok=True)
+
+        for file_name in os.listdir(folder_location):
+            # Images
+            if file_name.endswith((".png", ".jpg", ".bmp", ".gif", ".tif", ".kra",
+                                    ".svg", ".raw.", ".tiff", ".psd", ".bmp")):
+                file_path = os.path.join(folder_location, file_name)
+                shutil.move(file_path, images_folder)
+
+            # Documents
+            if file_name.endswith((".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
+                                    ".pdf", ".djvu", ".fb2", ".epub", ".mobi", ".txt",
+                                    ".odt", ".ods", ".odp", ".odg", ".odf", ".odb")):
+                file_path = os.path.join(folder_location, file_name)
+                shutil.move(file_path, documents_folder)
+
+            # Archives
+            if file_name.endswith((".zip", ".7z", ".rar", ".tar", ".gz", ".tar.gz")):
+                file_path = os.path.join(folder_location, file_name)
+                shutil.move(file_path, archives_folder)
+
+            # Videos
+            if file_name.endswith((".mp4", ".mkv", ".mov")):
+                file_path = os.path.join(folder_location, file_name)
+                shutil.move(file_path, videos_folder)
+
+        # Show a success message
+        self.info_label.configure(text="Files sorted successfully")
 
 
 if __name__ == "__main__":
