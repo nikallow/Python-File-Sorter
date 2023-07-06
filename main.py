@@ -70,7 +70,7 @@ class App(ctk.CTk):
 
 
     def github_link(self):
-        link = "https://github.com/nikallow/File-Sorter"
+        link = "https://github.com/nikallow/Python-File-Sorter"
         webbrowser.open(link)
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
