@@ -19,33 +19,46 @@ class App(ctk.CTk):
         my_font = ctk.CTkFont("Roboto Medium", 14)
 
 
-        # Configure folder entry
+        # Folder entry
         self.folder_entry = ctk.CTkEntry(master=self,width=360, height=40)
-        self.folder_entry.grid(row=0, column=0, padx=(20, 20), pady=(20, 0))
+        self.folder_entry.grid(row=0, column=0, padx=20, pady=(20, 0))
         self.folder_entry.configure(placeholder_text="Enter the folder location",
                                      font=my_font)
 
 
         # Button frame
         self.button_frame = ctk.CTkFrame(master=self, fg_color="transparent")
-        self.button_frame.grid(row=1, column=0, padx=(20, 20), pady=(10, 80))
+        self.button_frame.grid(row=1, column=0, padx=20, pady=(10))
 
         # Folder button
-        self.folder_button = ctk.CTkButton(master=self.button_frame)
-        self.folder_button.grid(row=1, column=0, padx=(0, 10), pady=(10, 0))
-        self.folder_button.configure(width=170, height=40, text="Choose folder",
-                                      font=my_font, command=self.select_folder)
+        self.folder_button = ctk.CTkButton(master=self.button_frame,
+                                            width=175, height=40)
+        self.folder_button.grid(row=1, column=0, padx=(0, 5), pady=0)
+        self.folder_button.configure( text="Choose folder", font=my_font, 
+                                     command=self.select_folder)
 
         # Sort button
-        self.sort_button = ctk.CTkButton(master=self.button_frame)
-        self.sort_button.grid(row=1, column=1, padx=(10, 0), pady=(10, 0))
-        self.sort_button.configure(width=170, height=40, text="Sort files",
+        self.sort_button = ctk.CTkButton(master=self.button_frame,
+                                         width=175, height=40)
+        self.sort_button.grid(row=1, column=1, padx=(5, 0), pady=0)
+        self.sort_button.configure( text="Sort files",
                                       font=my_font)# , command=self.sort_files)
+        
+
+        # Info frame
+        self.info_frame = ctk.CTkFrame(master=self, fg_color="transparent")
+        self.info_frame.grid(row=2, column=0, padx=20, pady=(0, 50))
+
+        # info label
+        self.info_label = ctk.CTkLabel(master=self.info_frame,
+                                       width=200, height=30,
+                                       text="Test message", font=my_font)
+        self.info_label.grid(row=0, column=0, padx=80, pady=0)        
 
 
         # Additional buttons frame
         self.add_button_frame = ctk.CTkFrame(master=self, fg_color="transparent")
-        self.add_button_frame.grid(row=2, column=0, padx=(20, 20), pady=(0,10))
+        self.add_button_frame.grid(row=3, column=0, padx=(20, 20), pady=(0,10))
 
         # Github button
         self.github_button = ctk.CTkButton(master=self.add_button_frame)
