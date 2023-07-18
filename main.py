@@ -1,3 +1,19 @@
+# Copyright 2023 nikallow
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+
 import os
 import shutil
 from tkinter import filedialog
@@ -73,7 +89,7 @@ class App(ctk.CTk):
         self.appearance_changer.configure(width=100, height=30, font =my_font,
                                            command = self.change_appearance_mode_event)
 
-
+    # Selecting a folder
     def select_folder(self):
         folder_path = filedialog.askdirectory()
         if folder_path:
@@ -81,13 +97,16 @@ class App(ctk.CTk):
             self.folder_entry.insert(0, folder_path)
         self.info_label.configure(text=" ")
 
+    # Opening a link to the repository
     def github_link(self):
         link = "https://github.com/nikallow/Python-File-Sorter"
         webbrowser.open(link)
 
+    # Change theme
     def change_appearance_mode_event(self, new_appearance_mode: str):
         ctk.set_appearance_mode(new_appearance_mode)
 
+    # Sorting files
     def sort_files(self):
         self.info_label.configure(text=" ")
         folder_location = app.folder_entry.get()
@@ -100,6 +119,7 @@ class App(ctk.CTk):
             self.info_label.configure(text="The specified folder does not exist.")
             return
 
+        # Creating folders
         sorted_folder = os.path.join(folder_location, "Sorted")
         os.makedirs(sorted_folder, exist_ok=True)
 
@@ -115,10 +135,11 @@ class App(ctk.CTk):
         videos_folder = os.path.join(sorted_folder, "Videos")
         os.makedirs(videos_folder, exist_ok=True)
 
+        # Sorting files
         for file_name in os.listdir(folder_location):
             # Images
             if file_name.endswith((".png", ".jpg", ".bmp", ".gif", ".tif", ".kra",
-                                    ".svg", ".raw.", ".tiff", ".psd", ".bmp")):
+                                    ".svg", ".raw.", ".tiff", ".psd", ".bmp", ".jpeg")):
                 file_path = os.path.join(folder_location, file_name)
                 shutil.move(file_path, images_folder)
 
@@ -135,7 +156,7 @@ class App(ctk.CTk):
                 shutil.move(file_path, archives_folder)
 
             # Videos
-            if file_name.endswith((".mp4", ".mkv", ".mov")):
+            if file_name.endswith((".mp4", ".mkv", ".mov", ".hevc")):
                 file_path = os.path.join(folder_location, file_name)
                 shutil.move(file_path, videos_folder)
 
