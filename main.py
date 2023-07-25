@@ -119,7 +119,7 @@ class App(ctk.CTk):
             self.info_label.configure(text="The specified folder does not exist.")
             return
 
-        # Creating folders
+        # Create folders
         sorted_folder = os.path.join(folder_location, "Sorted")
         os.makedirs(sorted_folder, exist_ok=True)
 
