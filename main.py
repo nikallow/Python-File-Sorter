@@ -138,8 +138,9 @@ class App(ctk.CTk):
         # Sorting files
         for file_name in os.listdir(folder_location):
             # Images
-            if file_name.endswith((".png", ".jpg", ".bmp", ".gif", ".tif", ".kra",
-                                    ".svg", ".raw.", ".tiff", ".psd", ".bmp", ".jpeg")):
+            if file_name.endswith((".png", ".jpg", ".bmp", ".gif", ".tif",
+                                    ".kra", ".svg", ".raw.", ".tiff", ".psd",
+                                    ".bmp", ".jpeg", ".webp")):
                 file_path = os.path.join(folder_location, file_name)
                 shutil.move(file_path, images_folder)
 
