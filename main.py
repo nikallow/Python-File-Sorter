@@ -131,17 +131,17 @@ class App(ctk.CTk):
         file_names = os.listdir(folder_location) 
 
         # Documents
-        if any(file_name.endswith((".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
-                                    ".pdf", ".djvu", ".fb2", ".epub", ".mobi", ".txt",
-                                    ".odt", ".ods", ".odp", ".odg", ".odf", ".odb"))
+        documents_types = (".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
+                            ".pdf", ".djvu", ".fb2", ".epub", ".mobi", ".txt",
+                            ".odt", ".ods", ".odp", ".odg", ".odf", ".odb")
+                            
+        if any(file_name.endswith(documents_types)
                 for file_name in file_names):
             documents_folder = os.path.join(sorted_folder, "Documents")
             os.makedirs(documents_folder, exist_ok=True)
     
         for file_name in file_names:
-            if file_name.endswith((".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
-                                    ".pdf", ".djvu", ".fb2", ".epub", ".mobi", ".txt",
-                                    ".odt", ".ods", ".odp", ".odg", ".odf", ".odb")):
+            if file_name.endswith(documents_types):
                 file_path = os.path.join(folder_location, file_name)
                 shutil.move(file_path, documents_folder)
             
