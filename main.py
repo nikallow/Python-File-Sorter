@@ -106,60 +106,45 @@ class App(ctk.CTk):
     def change_appearance_mode_event(self, new_appearance_mode: str):
         ctk.set_appearance_mode(new_appearance_mode)
 
+
+
     # Sorting files
     def sort_files(self):
         self.info_label.configure(text=" ")
         folder_location = app.folder_entry.get()
 
+        # Check if there is a path to the folder
         if folder_location == "":
             self.info_label.configure(text="Please select a folder.")
             return
 
+        # Check if the folder exists
         if not os.path.exists(folder_location):
             self.info_label.configure(text="The specified folder does not exist.")
             return
 
-        # Create folders
+        # Create "Sorted" folders
         sorted_folder = os.path.join(folder_location, "Sorted")
         os.makedirs(sorted_folder, exist_ok=True)
 
-        images_folder = os.path.join(sorted_folder, "Images")
-        os.makedirs(images_folder, exist_ok=True)
+        # Getting a list of files in the specified folder
+        file_names = os.listdir(folder_location) 
 
-        documents_folder = os.path.join(sorted_folder, "Documents")
-        os.makedirs(documents_folder, exist_ok=True)
-
-        archives_folder = os.path.join(sorted_folder, "Archives")
-        os.makedirs(archives_folder, exist_ok=True)
-
-        videos_folder = os.path.join(sorted_folder, "Videos")
-        os.makedirs(videos_folder, exist_ok=True)
-
-        # Sorting files
-        for file_name in os.listdir(folder_location):
-            # Images
-            if file_name.endswith((".png", ".jpg", ".bmp", ".gif", ".tif",
-                                    ".kra", ".svg", ".raw.", ".tiff", ".psd",
-                                    ".bmp", ".jpeg", ".webp")):
-                file_path = os.path.join(folder_location, file_name)
-                shutil.move(file_path, images_folder)
-
-            # Documents
+        # Documents
+        if any(file_name.endswith((".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
+                                    ".pdf", ".djvu", ".fb2", ".epub", ".mobi", ".txt",
+                                    ".odt", ".ods", ".odp", ".odg", ".odf", ".odb"))
+                for file_name in file_names):
+            documents_folder = os.path.join(sorted_folder, "Documents")
+            os.makedirs(documents_folder, exist_ok=True)
+    
+        for file_name in file_names:
             if file_name.endswith((".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
                                     ".pdf", ".djvu", ".fb2", ".epub", ".mobi", ".txt",
                                     ".odt", ".ods", ".odp", ".odg", ".odf", ".odb")):
                 file_path = os.path.join(folder_location, file_name)
                 shutil.move(file_path, documents_folder)
-
-            # Archives
-            if file_name.endswith((".zip", ".7z", ".rar", ".tar", ".gz", ".tar.gz")):
-                file_path = os.path.join(folder_location, file_name)
-                shutil.move(file_path, archives_folder)
-
-            # Videos
-            if file_name.endswith((".mp4", ".mkv", ".mov", ".hevc")):
-                file_path = os.path.join(folder_location, file_name)
-                shutil.move(file_path, videos_folder)
+            
 
         # Show a success message
         self.info_label.configure(text="Files sorted successfully")
