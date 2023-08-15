@@ -5,6 +5,8 @@ import webbrowser
 
 from sort import sort_files
 
+
+
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -19,56 +21,59 @@ class App(ctk.CTk):
         # Folder entry
         self.folder_entry = ctk.CTkEntry(master=self,width=360, height=40)
         self.folder_entry.grid(row=0, column=0, padx=20, pady=(20, 0))
-        self.folder_entry.configure(placeholder_text="Enter the folder location",
-                                     font=my_font)
+        self.folder_entry.configure(font=my_font, placeholder_text =
+                                     "Enter the folder location")
 
 
         # Button frame
         self.button_frame = ctk.CTkFrame(master=self, fg_color="transparent")
-        self.button_frame.grid(row=1, column=0, padx=20, pady=(10))
+        self.button_frame.grid(row=1, column=0, padx=20, pady=10)
 
         # Folder button
         self.folder_button = ctk.CTkButton(master=self.button_frame,
                                             width=175, height=40)
-        self.folder_button.grid(row=1, column=0, padx=(0, 5), pady=0)
+        self.folder_button.grid(row=1, column=0)
         self.folder_button.configure(text="Choose folder", font=my_font, 
                                      command=self.select_folder)
 
         # Sort button
         self.sort_button = ctk.CTkButton(master=self.button_frame,
                                          width=175, height=40)
-        self.sort_button.grid(row=1, column=1, padx=(5, 0), pady=0)
-        self.sort_button.configure(text="Sort files",
-                                    font=my_font , command=self.sort_files)
+        self.sort_button.grid(row=1, column=1, padx=(10, 0))
+        self.sort_button.configure(font=my_font, text="Sort files",
+                                    command=self.sort_files)
         
 
         # Info frame
         self.info_frame = ctk.CTkFrame(master=self, fg_color="transparent")
-        self.info_frame.grid(row=2, column=0, padx=20, pady=(0, 50))
+        self.info_frame.grid(row=2, column=0, padx=20)
 
         # Info label
         self.info_label = ctk.CTkLabel(master=self.info_frame,
                                        width=360, height=30,
                                        text=" ", font=my_font)
-        self.info_label.grid(row=0, column=0, padx=0, pady=0)        
+        self.info_label.grid(row=0, column=0)        
 
 
         # Additional buttons frame
-        self.add_button_frame = ctk.CTkFrame(master=self, fg_color="transparent")
-        self.add_button_frame.grid(row=3, column=0, padx=(20, 20), pady=(0,10))
+        self.add_button_frame = ctk.CTkFrame(master=self, 
+                                             fg_color="transparent")
+        self.add_button_frame.grid(row=3, column=0, padx=20, pady=(50, 10))
 
         # Github button
         self.github_button = ctk.CTkButton(master=self.add_button_frame)
-        self.github_button.grid(row=1, column=0, padx=(0, 80), pady=(0, 10))
-        self.github_button.configure(width=100, height=30, text="GitHub",
-                                      font =my_font, command=self.github_link)
+        self.github_button.grid(row=1, column=0)
+        self.github_button.configure(font=my_font, width=100, height=30, 
+                                     text="GitHub", command=self.github_link)
 
         # Appearance_changer
         self.appearance_changer = ctk.CTkOptionMenu(self.add_button_frame,
-                                                    values=["System", "Dark", "Light"])
-        self.appearance_changer.grid(row=1, column=1, padx=(80,0), pady = (0,10))
-        self.appearance_changer.configure(width=100, height=30, font =my_font,
-                                           command = self.change_appearance_mode_event)
+                                                    values=["System", "Dark", 
+                                                            "Light"])
+        self.appearance_changer.grid(row=1, column=1, padx=(160,0))
+        self.appearance_changer.configure(font=my_font, width=100, height=30,
+                                          command = 
+                                           self.change_appearance_mode_event)
         
     # Selecting a folder
     def select_folder(self):
@@ -99,7 +104,8 @@ class App(ctk.CTk):
             return
 
         if not os.path.exists(folder_location):
-            self.info_label.configure(text="The specified folder does not exist.")
+            self.info_label.configure(text=
+                                      "The specified folder does not exist.")
             return
 
         sort_files(folder_location)
