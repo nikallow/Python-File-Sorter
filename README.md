@@ -1,6 +1,6 @@
 <div align="center">
     <h1>
-    Welcome to my Python-File-Sorter mini project!
+    Welcome to my Python-File-Sorter DEV mini project!
     </h1>
 </div>
 
@@ -12,6 +12,8 @@
     <a> <img src="imgs/Dark_blue.png"> </a>
 </h1>
 
+## TODO DEV:
+Change the behaviour of the software. First check for certain files and then create folders (so that empty folders are not created)
 ## How it works
 The script creates a Sorted folder in which other folders (Documents, photos and similar) are created. Then it moves the files to these folders.
 
