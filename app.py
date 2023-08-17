@@ -6,6 +6,67 @@ import webbrowser
 from sort import sort_files
 
 
+class InfoWindow(ctk.CTkToplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+
+        # Configure window
+        self.title("Information")
+        self.geometry("240x200")
+        self.resizable(False, False)
+
+        # Fonts
+        small_font = ctk.CTkFont("Roboto Medium", 12)
+        medium_font = ctk.CTkFont("Roboto Medium", 16)
+        large_font = ctk.CTkFont("Roboto Medium", 24)
+
+        # Frame
+        self.frame = ctk.CTkFrame(self, width= 200, height = 160)
+        self.frame.grid(padx = 20, pady = 20)
+
+        # Program name
+        self.program_label = ctk.CTkLabel (master=self.frame, font=large_font,
+                                            width=200, height=30,
+                                            anchor="center",
+                                            text="File sorter")
+        self.program_label.grid(row=0, column=0)
+
+        # Version
+        self.version_label = ctk.CTkLabel (master=self.frame, font=small_font,
+                                            width=200, height=30,
+                                            anchor="center",
+                                            text="Version: dev build")
+        self.version_label.grid(row=1, column=0)
+
+        # Author
+        self.author_label = ctk.CTkLabel (master=self.frame, font=medium_font,
+                                           width=200, height=30,
+                                           anchor="center",
+                                           text="nikallow © 2023")
+        self.author_label.grid(row=2, column=0)
+
+        # License
+        self.license_label = ctk.CTkLabel (master=self.frame, font=medium_font,
+                                            width=200, height=30,
+                                            anchor="center",
+                                            text="License: GPL v3?")
+        self.license_label.grid(row=3, column=0)
+
+        # GitHub
+        self.github_button = ctk.CTkButton(master=self.frame, font=medium_font,
+                                           width= 160, height=30,
+                                           anchor="center",
+                                           text="Source code",
+                                           command=self.github_link)
+        self.github_button.grid(row=4, column=0, pady=4)
+
+
+    # Opening a link to the repository
+    def github_link(self):
+        link = "https://github.com/nikallow/Python-File-Sorter"
+        webbrowser.open(link)
+        
+
 
 class App(ctk.CTk):
     def __init__(self):
@@ -61,10 +122,10 @@ class App(ctk.CTk):
         self.add_button_frame.grid(row=3, column=0, padx=20, pady=(50, 10))
 
         # Github button
-        self.github_button = ctk.CTkButton(master=self.add_button_frame)
-        self.github_button.grid(row=1, column=0)
-        self.github_button.configure(font=my_font, width=100, height=30, 
-                                     text="GitHub", command=self.github_link)
+        self.info_button = ctk.CTkButton(master=self.add_button_frame)
+        self.info_button.grid(row=1, column=0)
+        self.info_button.configure(font=my_font, width=100, height=30, 
+                                    text="Info", command=self.open_info)
 
         # Appearance_changer
         self.appearance_changer = ctk.CTkOptionMenu(self.add_button_frame,
@@ -83,15 +144,18 @@ class App(ctk.CTk):
             self.folder_entry.insert(0, folder_path)
         self.info_label.configure(text=" ")
 
-    # Opening a link to the repository
-    def github_link(self):
-        link = "https://github.com/nikallow/Python-File-Sorter"
-        webbrowser.open(link)
 
     # Change theme
     def change_appearance_mode_event(self, new_appearance_mode: str):
         ctk.set_appearance_mode(new_appearance_mode)
 
+
+    # Open Info Window
+    def open_info(self):
+        info_window = InfoWindow(self)
+        info_window.transient(self)
+        info_window.after(100, info_window.focus_set)
+        self.wait_window(info_window)
 
 
     # Sorting files
