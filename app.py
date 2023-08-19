@@ -160,7 +160,7 @@ class App(ctk.CTk):
 
     # Sorting files
     def sort_files(self):
-        self.info_label.configure(text=" ")
+        self.clear_info_label()
         folder_location = self.folder_entry.get()
 
         if folder_location == "":
@@ -174,5 +174,20 @@ class App(ctk.CTk):
 
         sort_files(folder_location)
 
-        # Show a success message
+        # Disable the sort button and show a success message
+        self.change_button_state(self.sort_button, "disabled")
         self.info_label.configure(text="Files sorted successfully")
+
+        # Enable the sort button and clear info label
+        self.after(1500, self.clear_info_label)
+        self.after(1500, self.change_button_state, self.sort_button, "enabled")
+
+
+    # Clear info label
+    def clear_info_label(self):
+        self.info_label.configure(text=" ")
+
+
+    # Change button state
+    def change_button_state(self, button, state):
+        button.configure(state=state)
