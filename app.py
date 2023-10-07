@@ -1,3 +1,19 @@
+"""
+Copyright 2023 nikallow
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. 
+"""
+
 import os
 import customtkinter as ctk
 from tkinter import filedialog
@@ -35,22 +51,22 @@ class InfoWindow(ctk.CTkToplevel):
         self.version_label = ctk.CTkLabel (master=self.frame, font=small_font,
                                             width=200, height=30,
                                             anchor="center",
-                                            text="Version: dev build")
+                                            text="Version: 1.0.0-b.1")
         self.version_label.grid(row=1, column=0)
+
+        # License
+        self.license_label = ctk.CTkLabel (master=self.frame, font=small_font,
+                                            width=200, height=30,
+                                            anchor="center",
+                                            text="License: Apache License v2.0")
+        self.license_label.grid(row=2, column=0)
 
         # Author
         self.author_label = ctk.CTkLabel (master=self.frame, font=medium_font,
                                            width=200, height=30,
                                            anchor="center",
                                            text="nikallow © 2023")
-        self.author_label.grid(row=2, column=0)
-
-        # License
-        self.license_label = ctk.CTkLabel (master=self.frame, font=medium_font,
-                                            width=200, height=30,
-                                            anchor="center",
-                                            text="License: GPL v3?")
-        self.license_label.grid(row=3, column=0)
+        self.author_label.grid(row=3, column=0)
 
         # GitHub
         self.github_button = ctk.CTkButton(master=self.frame, font=medium_font,
