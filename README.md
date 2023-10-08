@@ -14,20 +14,19 @@
 
 ## TODO:
 * Upload packages
-* Write normal README.md
+* Create the icon
 
 ## How it works
-The script creates a Sorted folder in which other folders (Documents, photos and similar) are created. Then it moves the files to these folders.
+You select the folder where you want to sort the files. A "Sorted" folder is created in this folder, and folders are created in it by file type (Photos, videos, etc.) Then the files are moved to them. (I wonder if anyone will understand this explanation?)
 
 ## How to use
 ---
-> To start __main.py__ needs [Python](https://www.python.org/) installed on your system
+1. Install [Python](https://www.python.org/)
 
-> Also install [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter):  
+2. Also install [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter):  
 ```
 pip3 install customtkinter
 ```
----
-1. Launch main.py
-2. Click on the ```Choose folder``` button or paste the path to the folder in the box above
-3. Click on the ```Sort files``` button
+3. Launch __main.py__
+4. Click on the ```Choose folder``` button or paste the path to the folder in the box above
+5. Click on the ```Sort files``` button
