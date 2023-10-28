@@ -21,11 +21,15 @@ You select the folder where you want to sort the files. A "Sorted" folder is cre
 
 ## How to use
 ---
-1. Install [Python](https://www.python.org/)
+> Python and Git must be installed on your system
 
-2. Also install [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter):  
+1. Install [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter):  
 ```
 pip3 install customtkinter
+```
+2. Clone this repository:
+```
+git clone https://github.com/nikallow/Python-File-Sorter.git
 ```
 3. Launch __main.py__
 4. Click on the ```Choose folder``` button or paste the path to the folder in the box above
