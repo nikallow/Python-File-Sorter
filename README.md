@@ -9,7 +9,7 @@
 </h1>
 
 <h1 align="center">
-    <a> <img src="imgs/Dark_blue.png"> </a>
+    <a> <img src="imgs/Dark_blue_new.png"> </a>
 </h1>
 
 ## TODO:
