@@ -9,21 +9,28 @@
 </h1>
 
 <h1 align="center">
-    <a> <img src="imgs/Dark_blue.png"> </a>
+    <a> <img src="imgs/Dark_blue_new.png"> </a>
 </h1>
 
+## TODO:
+* Upload packages
+* Create the icon
+
 ## How it works
-The script creates a Sorted folder in which other folders (Documents, photos and similar) are created. Then it moves the files to these folders.
+You select the folder where you want to sort the files. A "Sorted" folder is created in this folder, and folders are created in it by file type (Photos, videos, etc.) Then the files are moved to them. (I wonder if anyone will understand this explanation?)
 
 ## How to use
 ---
-> To start __main.py__ needs [Python](https://www.python.org/) installed on your system
+> Python and Git must be installed on your system
 
-> Also install [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter):  
+1. Install [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter):  
 ```
 pip3 install customtkinter
 ```
----
-1. Launch main.py
-2. Click on the ```Choose folder``` button or paste the path to the folder in the box above
-3. Click on the ```Sort files``` button
+2. Clone this repository:
+```
+git clone https://github.com/nikallow/Python-File-Sorter.git
+```
+3. Launch __main.py__
+4. Click on the ```Choose folder``` button or paste the path to the folder in the box above
+5. Click on the ```Sort files``` button
