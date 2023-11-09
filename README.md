@@ -12,9 +12,8 @@
     <a> <img src="imgs/Dark_blue_new.png"> </a>
 </h1>
 
-## TODO:
-* Upload packages
-* Create the icon
+## NOTE:
+This program is in beta version and I am not responsible if something bad happens
 
 ## How it works
 You select the folder where you want to sort the files. A "Sorted" folder is created in this folder, and folders are created in it by file type (Photos, videos, etc.) Then the files are moved to them. (I wonder if anyone will understand this explanation?)

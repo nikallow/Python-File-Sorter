@@ -28,7 +28,7 @@ class InfoWindow(ctk.CTkToplevel):
 
         # Configure window
         self.title("Information")
-        self.geometry("240x200")
+        self.geometry("240x240")
         self.resizable(False, False)
 
         # Fonts
@@ -37,7 +37,7 @@ class InfoWindow(ctk.CTkToplevel):
         large_font = ctk.CTkFont("Roboto Medium", 24)
 
         # Frame
-        self.frame = ctk.CTkFrame(self, width= 200, height = 160)
+        self.frame = ctk.CTkFrame(self, width= 200, height = 180)
         self.frame.grid(padx = 20, pady = 20)
 
         # Program name
@@ -51,7 +51,7 @@ class InfoWindow(ctk.CTkToplevel):
         self.version_label = ctk.CTkLabel (master=self.frame, font=small_font,
                                             width=200, height=30,
                                             anchor="center",
-                                            text="Version: 1.0.0-b.1")
+                                            text="Version: 1.0.0-b.2")
         self.version_label.grid(row=1, column=0)
 
         # License
@@ -74,14 +74,27 @@ class InfoWindow(ctk.CTkToplevel):
                                            anchor="center",
                                            text="Source code",
                                            command=self.github_link)
-        self.github_button.grid(row=4, column=0, pady=4)
+        self.github_button.grid(row=4, column=0, pady=10)
+
+        # Icon
+        self.icon_info = ctk.CTkButton(master=self.frame, font=small_font,
+                                       width= 100, height=20,
+                                       anchor="center",
+                                       text="The info about icon",
+                                       command=self.github_link)
+        self.icon_info.grid(row=5, column=0, pady=4)
 
 
     # Opening a link to the repository
     def github_link(self):
-        link = "https://github.com/nikallow/Python-File-Sorter"
-        webbrowser.open(link)
-        
+        github_link = "https://github.com/nikallow/Python-File-Sorter"
+        webbrowser.open(github_link)
+
+    # Opening a link to the info about icon (ii)
+    def icon_info_link(self):
+        ii_link = ("https://github.com/nikallow/Python-File-Sorter/tree/main/"
+                   "icon/license.md")
+        webbrowser.open(ii_link)
 
 
 class App(ctk.CTk):
